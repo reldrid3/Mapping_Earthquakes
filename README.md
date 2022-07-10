@@ -71,3 +71,6 @@ By default, everything -- both the earthquakes and the tectonic lines -- was put
 
 #### Slider adjusted to show earthquakes between 2 and 4 magnitude
 ![](Earthquake_Challenge/screenshots/moderate.png)
+
+## Future Ideas
+- Adding in a radio button that will allow the user to choose the time frame they would like for their data - one hour, one day, one week, or one month.  All datasets could be read in beforehand, and the sliderControl would simply be rebuilt each time, depending on which set of data was selected by the radio button.
