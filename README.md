@@ -37,7 +37,7 @@ This entire deliverable was rendered obsolete by the addition of a Slider Bar, a
 I created a "dark" tileLayer and added it to the main layer control.
 
 ## Slider Bar Creation
-After seeing Deliverable #2's request to add another layer of earthquakes of magnitude > 4.5, which would be completely undetectable (and duplicative) unless the "all earthquakes" overlay was turned off in the control, I decided to alter the goal, that instead of making an entire overlapping layer, I could create a control that would filter the layer based on a slider.  This was much more difficult than I had originally planned (I assumed Leaflet may have had a plugin or control ready to go), but I persevered as follows.
+After seeing Deliverable #2's request to add another layer of earthquakes of magnitude > 4.5, which would be completely undetectable (and duplicative) unless the "all earthquakes" overlay was turned off in the control, I decided to alter the goal, that instead of making an entire overlapping layer, I could create a control that would filter the layer based on a slider.  This was much more difficult than I had originally planned (I assumed Leaflet may have had a plugin or control ready to go), but I persevered as follows to create my refactored version of a [slider control](Earthquake_Challenge/static/js/sliderControl.js).
 
 ### Finding a Template
 I went searching for Leaflet Sliders, and came across two possible plugins, of which I used the LeafletSlider, written by Dennis Wilhelm, hosted under an MIT license on [GitHub](https://github.com/dwilhelm89/LeafletSlider).  A few points about this code:
