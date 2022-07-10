@@ -46,7 +46,7 @@ I went searching for Leaflet Sliders, and came across two possible plugins, of w
 - This slider was set up as a filter for an ordered time series - converting this to filter by earthquake magnitude, instead, was a challenge.
     - Honestly, it was more of a challenge due to an excess of features and options that were set for the time code, that would either be inapplicable for magnitudes or set as a default for this particular implementation.  I removed a good bit of code to simplify the sliderControl.
 
-### Features Remaining
+### Features Pre-coded
 Some things that the slider had coded already that I left in place, besides the main guts of the class (add, remove, init, etc.), are:
 - Disabling and Enabling map dragging, so that the map isn't dragged while the slider is adjusted
 - A "timestamp" was displayed below the slider, to show the current timestamp being adjusted.  This was modified to display the current range of magnitudes being filtered by.
@@ -56,5 +56,18 @@ Adjusting this indexed-time filtering to filtering by magnitude required a bit o
 
 ### Filtering
 The filtering was already being done one at a time - essentially, each earthquake becomes an individual layer that is added to the map, and everytime the slider is adjusted, all those layers are removed from the map before a new filtering is applied.
+- One caveat of using a slider in the way I did was that auto-generating the min, max, and step values would not allow an exact 4.500 (in most cases).  Perhaps in the future, putting in a text box with adjustable numbers may help anyone who wishes to filter that precisely.
+
+### Pane Layering
+By default, everything -- both the earthquakes and the tectonic lines -- was put into the default overlayPane (zIndex = 400) of the map, regardless of whether it was a marker or not.  After seeing the tectonic lines on top of earthquake circleMarkers, I decided I wanted to have the circleMarkers always above the tectonic lines, so I changed the `onEachFeature()` function to include a line of code, `layer.options.pane = "markerPane";` which would assign each individual circleMarker to the default markerPane (zIndex = 600), and they would always show on top of the overlays.  This was necessary because the markers would be added as individual layers in the sliderControl.
 
 ### Screenshots
+
+#### Initial View
+![](Earthquake_Challenge/screenshots/initial.png)
+
+#### Slider adjusted to show all earthquakes above 4.5 magnitude
+![](Earthquake_Challenge/screenshots/major.png)
+
+#### Slider adjusted to show earthquakes between 2 and 4 magnitude
+![](Earthquake_Challenge/screenshots/moderate.png)
