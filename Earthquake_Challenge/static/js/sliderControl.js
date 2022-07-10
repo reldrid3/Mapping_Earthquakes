@@ -41,7 +41,7 @@ L.Control.SliderControl = L.Control.extend({
 
         // Create a control sliderContainer with a jquery ui slider
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
-        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-timestamp" style="width:200px; margin-top:13px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div></div>');
+        $(sliderContainer).append('<div id="leaflet-slider" style="width:200px"><div class="ui-slider-handle"></div><div id="slider-magdisplay" style="width:200px; margin-top:13px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div></div>');
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
@@ -56,6 +56,7 @@ L.Control.SliderControl = L.Control.extend({
         //If a layer has been provided: calculate the min and max values for the slider
         if (this._layer) {
             var index_temp = 0;
+            console.log(this._layer);
             this._layer.eachLayer(function (layer) {
                 options.markers[index_temp] = layer;
                 ++index_temp;
@@ -93,26 +94,24 @@ L.Control.SliderControl = L.Control.extend({
             max: _options.maxValue,
             step: (_options.maxValue - _options.minValue) / 100,
             slide: function (e, ui) {
-                console.log(ui.values);
                 var map = _options.map;
-                var fg = L.featureGroup();
-                $('#slider-timestamp').html(
+                $('#slider-magdisplay').html(
                     `Mag. Range: ${ui.values[0].toFixed(3)} to ${ui.values[1].toFixed(3)}`);
                 // clear markers
                 for (i = _options.minIndex; i <= _options.maxIndex; i++) {
-                    if(_options.markers[i]) map.removeLayer(_options.markers[i]);
+                    if(_options.markers[i])
+                        map.removeLayer(_options.markers[i]);
                 }
                 // jquery ui using range
                 for (i = _options.minIndex; i <= _options.maxIndex; i++){
                     if(_options.markers[i].feature.properties.mag >= ui.values[0] &&
                         _options.markers[i].feature.properties.mag <= ui.values[1]) {
-                        map.addLayer(_options.markers[i]);
-                        fg.addLayer(_options.markers[i]);
+                            _options.markers[i].addTo(map);
                     }
                 }
             }
         });
-        $('#slider-timestamp').html(
+        $('#slider-magdisplay').html(
             `Mag. Range: ${this.options.minValue.toFixed(3)} to ${this.options.maxValue.toFixed(3)}`);
         for (i = _options.minIndex; i <= _options.maxIndex; i++) {
             _options.map.addLayer(_options.markers[i]);

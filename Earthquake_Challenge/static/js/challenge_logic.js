@@ -54,7 +54,7 @@ let map = L.map('mapid', {
 
 // Then we add a control to the map that will allow the user to change which
 // layers are visible.
-L.control.layers(baseMaps, overlays, {
+layerControl = L.control.layers(baseMaps, overlays, {
   collapsed: false
 }).addTo(map);
 
@@ -167,11 +167,13 @@ d3.json(allEQLink).then(function(data) {
     // We create a popup for each circleMarker to display the magnitude and location of the earthquake
     //  after the marker has been created and styled.
     onEachFeature: function(feature, layer) {
+      // Ensure that each individual marker is put on the markerPane instead of the overlayPane
+      layer.options.pane = "markerPane";
       layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
     }
   });//.addTo(allEarthquakes);
-
-  // ***The allEarthquakes layer was made defunct by the layer(s) being created and managed by the Slider Control.***
+  
+  // ***The allEarthquakes layerGroup was made defunct by the layer(s) being created and managed by the Slider Control.***
   // Then we add the earthquake layer to our map.
   //allEarthquakes.addTo(map);
 
@@ -187,9 +189,10 @@ d3.json(allEQLink).then(function(data) {
   }).addTo(map);
 
   magSlider.startSlider();
+
 });
 
-/* ***THIS WOULD BE THE CODE FOR DELIVERABLE #2, IF THERE WAS NO SLIDER
+/* ***THIS WOULD BE THE CODE FOR DELIVERABLE #2, IF THERE WAS NO SLIDER***
 
 majorEQLink = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
 
