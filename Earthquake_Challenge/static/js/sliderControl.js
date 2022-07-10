@@ -97,7 +97,7 @@ L.Control.SliderControl = L.Control.extend({
                 var map = _options.map;
                 var fg = L.featureGroup();
                 $('#slider-timestamp').html(
-                    `Current Range: ${ui.values[0].toFixed(2)} to ${ui.values[1].toFixed(2)}`);
+                    `Mag. Range: ${ui.values[0].toFixed(3)} to ${ui.values[1].toFixed(3)}`);
                 // clear markers
                 for (i = _options.minIndex; i <= _options.maxIndex; i++) {
                     if(_options.markers[i]) map.removeLayer(_options.markers[i]);
@@ -113,7 +113,7 @@ L.Control.SliderControl = L.Control.extend({
             }
         });
         $('#slider-timestamp').html(
-            `Current Range: ${this.options.minValue.toFixed(2)} to ${this.options.maxValue.toFixed(2)}`);
+            `Mag. Range: ${this.options.minValue.toFixed(3)} to ${this.options.maxValue.toFixed(3)}`);
         for (i = _options.minIndex; i <= _options.maxIndex; i++) {
             _options.map.addLayer(_options.markers[i]);
         }

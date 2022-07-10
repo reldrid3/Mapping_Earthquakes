@@ -32,8 +32,8 @@ let baseMaps = {
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
-let allEarthquakes = new L.LayerGroup();
-let majorEarthquakes = new L.LayerGroup();
+//let allEarthquakes = new L.LayerGroup();
+//let majorEarthquakes = new L.LayerGroup();
 let tectPlates = new L.LayerGroup();
 
 
@@ -177,15 +177,15 @@ d3.json(allEQLink).then(function(data) {
 
   minMag = Math.min(...Object.entries(eqData._layers).map(x => x[1].feature.properties.mag));
   maxMag = Math.max(...Object.entries(eqData._layers).map(x => x[1].feature.properties.mag));
-  
+
   var magSlider = null;
   magSlider = L.control.sliderControl({
     position: "topright",
     layer: eqData,
     minValue: minMag,
     maxValue: maxMag
-  });
-  map.addControl(magSlider);
+  }).addTo(map);
+
   magSlider.startSlider();
 });
 
