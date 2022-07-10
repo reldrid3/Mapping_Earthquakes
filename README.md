@@ -52,7 +52,7 @@ Some things that the slider had coded already that I left in place, besides the 
 - A "timestamp" was displayed below the slider, to show the current timestamp being adjusted.  This was modified to display the current range of magnitudes being filtered by.
 
 ### Changing Time to Magnitudes
-Adjusting this indexed-time filtering to filtering by magnitude required a bit of tinkering with the min and max values - originally, they were set to the first and last index of the array, but I had to set them to the minimum and maximum value of the earthquake data (calculated painstakingly in the [challenge logic](static/js/challenge_logic.js) file).  I still needed the array indices to sift through the markers each time, however - I just used my newly-created minValue and maxValue much more than minIndex and maxIndex.
+Adjusting this indexed-time filtering to filtering by magnitude required a bit of tinkering with the min and max values - originally, they were set to the first and last index of the array, but I had to set them to the minimum and maximum value of the earthquake data (calculated painstakingly in the [challenge logic](Earthquake_Challenge/static/js/challenge_logic.js) file).  I still needed the array indices to sift through the markers each time, however - I just used my newly-created minValue and maxValue much more than minIndex and maxIndex.
 
 ### Filtering
 The filtering was already being done one at a time - essentially, each earthquake becomes an individual layer that is added to the map, and everytime the slider is adjusted, all those layers are removed from the map before a new filtering is applied.
