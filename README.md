@@ -41,10 +41,10 @@ After seeing Deliverable #2's request to add another layer of earthquakes of mag
 
 ### Finding a Template
 I went searching for Leaflet Sliders, and came across two possible plugins, of which I used the LeafletSlider, written by Dennis Wilhelm, hosted under an MIT license on [GitHub](https://github.com/dwilhelm89/LeafletSlider).  A few points about this code:
-- The code was based on jQuery, as I found, and I needed to add jQuery's JS and CSS code, as well as the jQuery UI JS code.
-- The sliderControl itself is an extension of a Leaflet control - essentially a class that inherits L.Control, so it was easier to understand in that regard.
-- This slider was set up as a filter for an ordered time series - converting this to filter by earthquake magnitude, instead, was a challenge.
-    - Honestly, it was more of a challenge due to an excess of features and options that were set for the time code, that would either be inapplicable for magnitudes or set as a default for this particular implementation.  I removed a good bit of code to simplify the sliderControl.
+- The code was based on jQuery, as I found, and I needed to add jQuery's JS and CSS code, as well as the jQuery UI JS code, to [index.html](Earthquake_Challenge/index.html).
+- The sliderControl itself is an extension of a Leaflet control - essentially a class that inherits L.Control, so it was easier to understand and implement in that regard.
+- This slider was originally set up as a filter for an ordered time series - converting this to filter by earthquake magnitude, instead, was more of a challenge.
+    - Honestly, it was more challenging due to an excess of features and options that were set for the time code, that would either be inapplicable for magnitudes or set as a default for this particular implementation.  I removed a good bit of code and options to simplify the sliderControl.
 
 ### Features Pre-coded
 Some things that the slider had coded already that I left in place, besides the main guts of the class (add, remove, init, etc.), are:
@@ -52,7 +52,7 @@ Some things that the slider had coded already that I left in place, besides the 
 - A "timestamp" was displayed below the slider, to show the current timestamp being adjusted.  This was modified to display the current range of magnitudes being filtered by.
 
 ### Changing Time to Magnitudes
-Adjusting this indexed-time filtering to filtering by magnitude required a bit of tinkering with the min and max values - originally, they were set to the first and last index of the array, but I had to set them to the minimum and maximum value of the earthquake data (calculated painstakingly in the [challenge logic](static/js/challenge_logic.js) file).  I still needed the array data to sift through the markers each time, however - I just used my minValue and maxValue much more than minIndex and maxIndex.
+Adjusting this indexed-time filtering to filtering by magnitude required a bit of tinkering with the min and max values - originally, they were set to the first and last index of the array, but I had to set them to the minimum and maximum value of the earthquake data (calculated painstakingly in the [challenge logic](static/js/challenge_logic.js) file).  I still needed the array indices to sift through the markers each time, however - I just used my newly-created minValue and maxValue much more than minIndex and maxIndex.
 
 ### Filtering
 The filtering was already being done one at a time - essentially, each earthquake becomes an individual layer that is added to the map, and everytime the slider is adjusted, all those layers are removed from the map before a new filtering is applied.
