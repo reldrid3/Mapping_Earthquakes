@@ -172,20 +172,7 @@ d3.json(allEQLink).then(function(data) {
     }
   }).addTo(allEarthquakes);
   allEarthquakes.addTo(map);
-
-  minMag = Math.min(...Object.entries(eqData._layers).map(x => x[1].feature.properties.mag));
-  maxMag = Math.max(...Object.entries(eqData._layers).map(x => x[1].feature.properties.mag));
-
-  var magSlider = null;
-  magSlider = L.control.sliderControl({
-    position: "topright",
-    layer: eqData,
-    minValue: minMag,
-    maxValue: maxMag
-  }).addTo(map);
-
-  magSlider.startSlider();
-
+  
 });
 
 majorEQLink = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson"
